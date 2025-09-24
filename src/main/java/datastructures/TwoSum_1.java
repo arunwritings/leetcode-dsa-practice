@@ -18,6 +18,7 @@ public class TwoSum_1 {
         return null;
     }
 
+
     public static void main(String[] args) {
         TwoSum_1 twoSum1 = new TwoSum_1();
         int[] nums = {2,7,11,15};
