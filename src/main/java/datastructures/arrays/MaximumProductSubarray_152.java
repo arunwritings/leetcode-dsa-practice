@@ -3,15 +3,17 @@ package datastructures.arrays;
 public class MaximumProductSubarray_152 {
 
     public int maxProduct(int[] nums) {
-        int res = nums[0];
-        int currentMin = 1, currentMax = 1;
-        for (int num : nums) {
-            int temp = currentMax * num;
-            currentMax = Math.max(Math.max(currentMax*num, currentMin*num), num);
-            currentMin = Math.min(Math.min(temp, num*currentMin), num);
-            res = Math.max(res, currentMax);
+        int n = nums.length;
+        int prefix = 1, suffix = 1;
+        int ans = Integer.MIN_VALUE;
+        for (int i=0;i<n;i++) {
+            if (prefix==0) prefix = 1;
+            if (suffix==0) suffix = 1;
+            prefix *= nums[i];
+            suffix *= nums[n-i-1];
+            ans = Math.max(ans, Math.max(prefix,suffix));
         }
-        return res;
+        return ans;
     }
 
     public static void main(String[] args) {
